@@ -1,0 +1,141 @@
+/* Variables for easy color changes */
+:root {
+    --teal-bg: #148f95; /* Header background color */
+    --light-cream: #EDEBD7; /* Main content and body background color */
+    --text-color: #ffffff; /* Navigation link color */
+    --dark-text: #333333; /* Main content text color */
+    --button-bg: #148f95; /* Button background color */
+    --button-hover: #107c81; /* Button hover color */
+    --text-font: 'Fustat', sans-serif; /* Fustat font family */
+}
+
+/* --- Global Reset --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--light-cream);
+}
+
+/* --- Header Container --- */
+.main-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%; 
+    box-sizing: border-box;
+    background-color: var(--teal-bg);
+    padding: 25px 40px; 
+}
+
+/* --- Logo Area Styling --- */
+.header-logo-link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header-logo-circle {
+    width: 65px; 
+    height: 65px;
+    border-radius: 50%;
+    background-color: var(--light-cream);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) inset; 
+    overflow: hidden;
+}
+
+.logo-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* --- Navigation Buttons Styling (ExtraBold) --- */
+.header-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; 
+    gap: 40px; 
+}
+
+.header-nav li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-family: var(--text-font); 
+    font-weight: 800; /* Menu is ExtraBold (800) */
+    padding: 10px 0; 
+    transition: color 0.2s;
+}
+
+.header-nav li a:hover {
+    color: #ffd700;
+}
+
+/* --- Main Content Section --- */
+.content-section {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    background-color: var(--light-cream);
+    padding: 40px 60px; 
+    margin: 0;
+    box-shadow: none; 
+    border-radius: 0; 
+    max-width: none; 
+    gap: 40px; 
+}
+
+.text-column {
+    flex: 1; 
+    max-width: 55%; 
+    color: var(--dark-text);
+    line-height: 1.6;
+    text-align: center; 
+}
+
+.text-column p {
+    margin-bottom: 20px;
+    text-align: left; 
+    /* NEW: Fustat Regular (400) applied to paragraphs */
+    font-family: var(--text-font);
+    font-size: 1.5em; 
+    font-weight: 400; /* Set to Regular weight */
+}
+
+.image-column {
+    flex: 1;
+    max-width: 45%; 
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+}
+
+.code-snippet-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+}
+
+/* --- "Kezdés!" Button Styling --- */
+.start-button {
+    display: inline-block;
+    margin-top: 30px; 
+    
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: var(--text-font);
+    font-weight: 800; /* Button remains ExtraBold (800) */
+    font-size: 1.2em;
+    padding: 15px 30px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+    background-color: var(--button-hover);
+}
