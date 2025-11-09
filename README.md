@@ -8,8 +8,8 @@ HTML and CSS tutorial website for a school project
 ## Authors
 
 - [@axerdev (B.M.)](https://www.github.com/axerdev)
-- J.M
-- J.Z.
+- [@xanaax-script (J.Z.)]([https://www.github.com/axerdev](https://github.com/xanaax-scrpt))
+- J.M.
 
 
 
