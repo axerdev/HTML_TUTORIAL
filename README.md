@@ -9,7 +9,7 @@ HTML and CSS tutorial website for a school project
 
 - [@axerdev (B.M.)](https://www.github.com/axerdev)
 - [@xanaax-script (J.Z.)](https://github.com/xanaax-scrpt)
-- J.M.
+- [@Grumate (J.M.)](https://github.com/grumate)
 
 ## Demo
 - Check out the live demo at https://axerdev.github.io/HTML_TUTORIAL/
