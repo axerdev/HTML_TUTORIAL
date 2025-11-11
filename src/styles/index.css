@@ -1,163 +1,452 @@
-/* Variables for easy color changes */
-:root {
-    --teal-bg: #148f95; /* Header background color */
-    --light-cream: #EDEBD7; /* Main content and body background color */
-    --text-color: #ffffff; /* Navigation link color */
-    --dark-text: #333333; /* Main content text color */
-    --button-bg: #148f95; /* Button background color */
-    --button-hover: #107c81; /* Button hover color */
-    --text-font: 'Fustat', sans-serif; /* Fustat font family */
-}
-
-/* --- Global Reset --- */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--light-cream);
-}
-
-/* --- Header Container (Adjusted for 3 items) --- */
-.main-header {
-    display: flex;
-    /* Use space-between to push logo+title block to left, nav to right */
-    justify-content: space-between; 
-    align-items: center;
-    width: 100%; 
-    box-sizing: border-box;
-    background-color: var(--teal-bg);
-    padding: 25px 40px; 
-}
-
-/* --- Logo Area Styling --- */
-.header-logo-link {
-    text-decoration: none;
-    cursor: pointer;
-    /* New: Added display flex to keep logo and title close if needed */
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Space between logo and title if title is inside the link */
-}
-
-.header-logo-circle {
-    width: 65px; 
-    height: 65px;
-    border-radius: 50%;
-    background-color: var(--light-cream);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) inset; 
-    overflow: hidden;
-    /* Flex-shrink prevents the logo from shrinking if space is tight */
-    flex-shrink: 0; 
-}
-
-.logo-image {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-/* --- NEW: Header Title Styling --- */
-.header-title {
-    color: var(--text-color);
-    font-family: var(--text-font);
-    font-weight: 800; /* Assuming ExtraBold as per the menu */
-    font-size: 1.5em; /* Adjusted font size for prominence */
-    margin: 0; /* Remove default h1 margin */
-    white-space: nowrap; /* Prevents text from wrapping */
-    margin-right: auto; /* Pushes the title as far left as possible (next to logo) */
-    padding-left: 40px; /* Space between logo and title */
-}
-
-/* --- Navigation Buttons Styling --- */
-.header-nav {
-    /* Removed margin-right: auto; as header-title handles spacing */
-    flex-shrink: 0; /* Prevents navigation from shrinking */
-}
-.header-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; 
-    gap: 80px; 
-}
-
-.header-nav li a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 1.5em;
-    font-family: var(--text-font); 
-    font-weight: 800; 
-    padding: 10px 0; 
-    transition: color 0.2s;
-}
-
-.header-nav li a:hover {
-    color: #ffd700;
-}
-
-/* --- Main Content Section (No Change) --- */
-.content-section {
-    display: flex;
-    justify-content: space-between; 
-    align-items: flex-start;
-    background-color: var(--light-cream);
-    padding: 40px 60px; 
-    margin: 0;
-    box-shadow: none; 
-    border-radius: 0; 
-    max-width: none; 
-    gap: 40px; 
-}
-
-.text-column {
-    flex: 1; 
-    max-width: 55%; 
-    color: var(--dark-text);
-    line-height: 1.6;
-    text-align: center; 
-}
-
-.text-column p {
-    margin-bottom: 20px;
-    text-align: left; 
-    font-family: var(--text-font);
-    font-size: 1.5em; 
-    font-weight: 600; 
-}
-
-.image-column {
-    flex: 1;
-    max-width: 45%; 
-    display: flex;
-    justify-content: flex-end; 
-    align-items: center;
-}
-
-.code-snippet-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
-}
-
-/* --- "Kezdés!" Button Styling --- */
-.start-button {
-    display: inline-block;
-    margin-top: 150px; 
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;800&display=swap" rel="stylesheet">
     
-    background-color: var(--button-bg);
-    color: var(--text-color);
-    text-decoration: none;
-    font-family: var(--text-font);
-    font-weight: 800; 
-    font-size: 1.5em;
-    padding: 15px 30px;
-    border-radius: 50px;
-    transition: background-color 0.3s ease;
-}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Oktatás</title>
 
-.start-button:hover {
-    background-color: var(--button-hover);
-}
+    <style>
+        /* Variables for easy color changes and font definitions */
+        :root {
+            --teal-bg: #148f95; /* Header background color */
+            --light-cream: #EDEBD7; /* Main content and body background color */
+            --text-color: #ffffff; /* Header text color */
+            --dark-text: #333333; /* Main content text color */
+            --category-bg: #4A4A4A; /* Category sidebar background */
+            --lesson-border: #148f95; /* Lesson button border/text color */
+            --lesson-active-bg: #007bff; /* Solid Blue for Visited Lesson */
+            --text-font: 'Fustat', sans-serif; /* Defined for use in headers/nav */
+        }
+
+        /* --- Global Reset --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--text-font);
+            background-color: var(--light-cream);
+            color: var(--dark-text);
+        }
+
+        /* ==================== 1. Header Styling (Updated) ==================== */
+
+        .main-header {
+            display: flex;
+            /* Use space-between to push logo+title block to left, nav to right */
+            justify-content: space-between; 
+            align-items: center;
+            width: 100%; 
+            box-sizing: border-box;
+            background-color: var(--teal-bg);
+            padding: 25px 40px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Kept for aesthetics */
+        }
+
+        /* --- Logo Area Styling --- */
+        .header-logo-link {
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            /* Logo link only contains the circle, not the title. Gap rule is not needed here. */
+        }
+
+        .header-logo-circle {
+            width: 65px; 
+            height: 65px;
+            border-radius: 50%;
+            background-color: var(--light-cream);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) inset; 
+            overflow: hidden;
+            flex-shrink: 0; 
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- NEW: Header Title Styling --- */
+        .header-title {
+            color: var(--text-color);
+            font-family: var(--text-font);
+            font-weight: 800; 
+            font-size: 1.5em; 
+            margin: 0; 
+            white-space: nowrap; 
+            margin-right: auto; /* Pushes the navigation to the far right */
+            padding-left: 40px; /* Space between logo and title */
+        }
+
+        /* --- Navigation Buttons Styling --- */
+        .header-nav {
+            flex-shrink: 0; /* Prevents navigation from shrinking */
+        }
+        
+        .header-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; 
+            gap: 80px; /* Increased spacing */
+        }
+
+        .header-nav li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.5em; /* Larger font size */
+            font-family: var(--text-font); 
+            font-weight: 800; 
+            padding: 10px 0; 
+            transition: color 0.2s;
+        }
+
+        .header-nav li a:hover {
+            color: #ffd700;
+        }
+
+        /* ==================== 2. Main Content Layout ==================== */
+        .lesson-container {
+            display: flex;
+            padding: 40px 60px;
+            gap: 40px;
+        }
+
+        .lesson-main {
+            flex: 3; 
+        }
+
+        .lesson-sidebar {
+            flex: 1; 
+        }
+
+        /* Lesson Header */
+        .lesson-main h2 {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: var(--dark-text);
+            margin-bottom: 5px;
+        }
+
+        .lesson-main p {
+            font-size: 1.1em;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        /* Lesson Grid */
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px;
+        }
+
+        /* Responsive adjustments for the grid */
+        @media (max-width: 1024px) {
+            .lesson-grid {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+        @media (max-width: 768px) {
+            .lesson-container {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .lesson-grid {
+                grid-template-columns: 1fr; 
+            }
+            .lesson-sidebar {
+                flex: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+            /* Adjust header for mobile */
+            .main-header {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .header-title {
+                padding-left: 20px; /* Reduced spacing */
+                font-size: 1.2em;
+                margin-right: 0; /* Remove auto margin on wrap */
+            }
+            .header-nav {
+                width: 100%;
+                margin-top: 10px;
+            }
+            .header-nav ul {
+                justify-content: space-around;
+                gap: 20px;
+            }
+        }
+
+        /* ==================== 3. Lesson Button Styling ==================== */
+        .lesson-card {
+            background-color: var(--light-cream);
+            border: 2px solid var(--lesson-border);
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--lesson-border);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+            text-decoration: none; 
+            padding: 25px; 
+            box-sizing: border-box;
+        }
+
+        /* Hover effect (subtle lift/shadow) */
+        .lesson-card:hover {
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Active/Visited state: Solid blue fill */
+        .lesson-card.active {
+            background-color: var(--lesson-active-bg);
+            border-color: var(--lesson-active-bg);
+            color: var(--text-color); 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Utility class to hide elements */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ==================== 4. Category Sidebar Styling ==================== */
+        .sidebar-card {
+            background-color: var(--category-bg);
+            border-radius: 12px;
+            padding: 20px 25px;
+            color: var(--text-color);
+            min-height: 250px;
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.5em;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-item {
+            cursor: pointer;
+            padding: 10px 0;
+            font-size: 1.2em;
+            font-weight: 400;
+            position: relative;
+            transition: color 0.2s;
+            margin-left: 15px; 
+        }
+        
+        /* Custom bullet point */
+        .category-item::before {
+            content: '•';
+            color: var(--lesson-border); 
+            font-size: 1.5em;
+            line-height: 0;
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .category-item:hover,
+        .category-item.active-filter {
+            color: #ffd700; 
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header, szerepeljen mindenhol -->
+    <header class="main-header">
+        <a href="index.html" class="header-logo-link">
+            <div class="header-logo-circle">
+                <img src="src/img/LOGO_PNG.png" alt="Homepage Logo" class="logo-image">
+            </div>
+        </a>
+        <h1 class="header-title">Így készíts weboldalakat!</h1>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="szerkeszto.html">HTML Szerkesztő</a></li>
+                <li><a href="oktatoanyagok.html">Oktatóanyagok</a></li>
+                <li><a href="rolunk.html">Rólunk</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-container">
+        
+        <!-- ==================== MAIN LESSON AREA ==================== -->
+        <section class="lesson-main">
+            <h2>HTML LECKÉK</h2>
+            <p>Tanuld meg könnyedén a HTML-t, lépésről lépésre.</p>
+
+            <div class="lesson-grid" id="lessonGrid">
+                
+                <a href="lesson-1.html" class="lesson-card" data-lesson-id="l1" data-category="kezdő">
+                    1. Lecke
+                </a>
+                
+                <a href="lesson-2.html" class="lesson-card" data-lesson-id="l2" data-category="kezdő">
+                    2. Lecke
+                </a>
+                
+                <a href="lesson-3.html" class="lesson-card" data-lesson-id="l3" data-category="haladó">
+                    3. Lecke
+                </a>
+                
+                <a href="lesson-4.html" class="lesson-card" data-lesson-id="l4" data-category="haladó">
+                    4. Lecke
+                </a>
+                
+                <a href="lesson-5.html" class="lesson-card" data-lesson-id="l5" data-category="profi">
+                    5. Lecke
+                </a>
+                
+                <a href="lesson-6.html" class="lesson-card" data-lesson-id="l6" data-category="profi">
+                    6. Lecke
+                </a>
+                
+                <a href="lesson-7.html" class="lesson-card" data-lesson-id="l7" data-category="kezdő">
+                    7. Lecke
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ==================== SIDEBAR CATEGORIES ==================== -->
+        <aside class="lesson-sidebar">
+            <div class="sidebar-card">
+                <h3>Kategóriák</h3>
+                <ul class="category-list" id="categoryList">
+                    <!-- data-filter attribute is used by JS for filtering -->
+                    <li class="category-item active-filter" data-filter="all" onclick="filterLessons(this, 'all')">Összes</li>
+                    <li class="category-item" data-filter="kezdő" onclick="filterLessons(this, 'kezdő')">Kezdő</li>
+                    <li class="category-item" data-filter="haladó" onclick="filterLessons(this, 'haladó')">Haladó</li>
+                    <li class="category-item" data-filter="profi" onclick="filterLessons(this, 'profi')">Profi</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <!-- JavaScript for persistence and filtering -->
+    <script>
+        // Using localStorage to track visited lessons
+        const VISITED_LESSONS_KEY = 'visitedLessons';
+        
+        /**
+         * Loads the list of visited lessons from localStorage.
+         * @returns {Set<string>} A Set of unique visited lesson IDs.
+         */
+        function getVisitedLessons() {
+            const data = localStorage.getItem(VISITED_LESSONS_KEY);
+            return new Set(JSON.parse(data) || []);
+        }
+
+        /**
+         * Saves a lesson ID as visited and updates the list in localStorage.
+         * @param {string} lessonId - The ID of the lesson to mark as visited.
+         */
+        function markLessonAsVisited(lessonId) {
+            const visited = getVisitedLessons();
+            if (!visited.has(lessonId)) {
+                visited.add(lessonId);
+                localStorage.setItem(VISITED_LESSONS_KEY, JSON.stringify(Array.from(visited)));
+            }
+        }
+
+        /**
+         * Applies the 'active' (blue) class to all lessons found in localStorage (visited).
+         */
+        function applyVisitedStatus() {
+            const visited = getVisitedLessons();
+            document.querySelectorAll('.lesson-card').forEach(lessonCard => {
+                const lessonId = lessonCard.dataset.lessonId;
+                if (visited.has(lessonId)) {
+                    lessonCard.classList.add('active');
+                } else {
+                    lessonCard.classList.remove('active');
+                }
+            });
+        }
+        
+        /**
+         * Filters the lessons displayed based on the selected category.
+         */
+        function filterLessons(categoryElement, category) {
+            const lessons = document.querySelectorAll('.lesson-card');
+            const categoryItems = document.querySelectorAll('.category-item');
+
+            // 1. Update active filter state in sidebar
+            categoryItems.forEach(item => item.classList.remove('active-filter'));
+            categoryElement.classList.add('active-filter');
+
+            // 2. Filter lesson cards
+            lessons.forEach(lesson => {
+                const lessonCategory = lesson.dataset.category;
+                
+                if (category === 'all' || lessonCategory === category) {
+                    lesson.classList.remove('hidden');
+                } else {
+                    lesson.classList.add('hidden');
+                }
+            });
+        }
+        
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Set up event listeners for navigation and tracking
+            document.querySelectorAll('.lesson-card').forEach(link => {
+                link.addEventListener('click', (event) => {
+                    // Prevent default navigation temporarily
+                    event.preventDefault(); 
+                    
+                    const lessonId = event.currentTarget.dataset.lessonId;
+                    const href = event.currentTarget.href;
+                    
+                    // 1. Mark lesson as visited
+                    markLessonAsVisited(lessonId);
+                    
+                    // 2. Update the color immediately
+                    event.currentTarget.classList.add('active'); 
+
+                    // 3. Navigate
+                    window.location.href = href;
+                });
+            });
+
+            // 2. Apply the 'visited' blue color state on page load
+            applyVisitedStatus();
+            
+            // 3. Initialize the filter to show 'Összes' (All)
+            filterLessons(document.querySelector('.category-item[data-filter="all"]'), 'all');
+        });
+
+    </script>
+</body>
+</html>
