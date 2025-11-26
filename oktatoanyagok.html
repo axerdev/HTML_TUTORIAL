@@ -310,7 +310,7 @@
 
             <div class="lesson-grid" id="lessonGrid">
                 
-                <a href="lesson-1.html" class="lesson-card" data-lesson-id="l1" data-category="kezdő">
+                <a href="lecke1.html" class="lesson-card" data-lesson-id="l1" data-category="kezdő">
                     1. Lecke
                 </a>
                 
@@ -358,10 +358,10 @@
                 <h3>Kategóriák</h3>
                 <ul class="category-list" id="categoryList">
                     <!-- data-filter attribute is used by JS for filtering -->
-                    <li class="category-item active-filter" data-filter="all" onclick="filterLessons(this, 'kezdő')">Kezdő</li>
+                    <li class="category-item active-filter" data-filter="all" onclick="filterLessons(this, 'all')">Összes</li>
+                    <li class="category-item" data-filter="profi" onclick="filterLessons(this, 'kezdő')">Kezdő</li>
                     <li class="category-item" data-filter="kezdő" onclick="filterLessons(this, 'haladó')">Haladó</li>
                     <li class="category-item" data-filter="haladó" onclick="filterLessons(this, 'profi')">Profi</li>
-                    <li class="category-item" data-filter="profi" onclick="filterLessons(this, 'all')">Összes</li>
                 </ul>
             </div>
         </aside>
