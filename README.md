@@ -1,9 +1,7 @@
+
 # HTML and CSS tutorial website
 
 HTML and CSS tutorial website for a school project
-
-
-
 
 ## Authors
 
@@ -11,12 +9,14 @@ HTML and CSS tutorial website for a school project
 - [@xanaax-script (J.Z.)](https://github.com/xanaax-scrpt)
 - [@Grumate (J.M.)](https://github.com/grumate)
 
+
 ## Demo
+
 - Check out the live demo at https://axerdev.github.io/HTML_TUTORIAL/
 
 
 ## Screenshots
-- Main Page
-
-
-![App Screenshot](https://cdn.discordapp.com/attachments/1342609119349178368/1436836573462270044/image.png?ex=69110dd6&is=690fbc56&hm=ebcf50ad923707e81e44a2e522ebecdb2440c25bb4148bf96a922fa2dae6ff53&)
+- Main page
+![App Screenshot](https://i.imgur.com/pPGu7hr.png)
+- Lessons page
+![App Screenshot](https://i.imgur.com/pPGu7hr.png)
