@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;800&display=swap" rel="stylesheet">
+        <style>
+            /* Variables for easy color changes */
+            :root {
+                --teal-bg: #148f95; /* Header background color */
+                --light-cream: #EDEBD7; /* Main content and body background color */
+                --text-color: #ffffff; /* Navigation link color */
+                --dark-text: #333333; /* Main content text color */
+                --button-bg: #148f95; /* Button background color */
+                --button-hover: #107c81; /* Button hover color */
+                --text-font: 'Fustat', sans-serif; /* Fustat font family */
+                --code-bg: #282c34; /* Dark code background */
+                --code-text: #f8f8f2;
+            }
+
+            /* --- Global Reset --- */
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background-color: var(--light-cream);
+            }
+
+            /* --- Header Container (Adjusted for 3 items) --- */
+            .main-header {
+                display: flex;
+                justify-content: space-between; 
+                align-items: center;
+                width: 100%; 
+                box-sizing: border-box;
+                background-color: var(--teal-bg);
+                padding: 25px 40px; 
+            }
+
+            /* --- Logo Area Styling --- */
+            .header-logo-link {
+                text-decoration: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .header-logo-circle {
+                width: 65px; 
+                height: 65px;
+                border-radius: 50%;
+                background-color: var(--light-cream);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) inset; 
+                overflow: hidden;
+                flex-shrink: 0; 
+            }
+
+            /* Az oktatoanyagok.html-ben használt SVG logó */
+            .logo-image-svg {
+                max-width: 100%;
+                max-height: 100%;
+                /* Az SVG fill/stroke színe a CSS változóval */
+                stroke: var(--teal-bg); 
+            }
+            
+            /* --- Header Title Styling --- */
+            .header-title {
+                color: var(--text-color);
+                font-family: var(--text-font);
+                font-weight: 800; 
+                font-size: 1.5em; 
+                margin: 0; 
+                white-space: nowrap; 
+                margin-right: auto; 
+                padding-left: 40px; 
+            }
+
+            /* --- Navigation Buttons Styling --- */
+            .header-nav {
+                flex-shrink: 0; 
+            }
+            .header-nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex; 
+                gap: 80px; 
+            }
+
+            .header-nav li a {
+                color: var(--text-color);
+                text-decoration: none;
+                font-size: 1.5em;
+                font-family: var(--text-font); 
+                font-weight: 800; 
+                padding: 10px 0; 
+                transition: color 0.2s;
+            }
+
+            .header-nav li a:hover {
+                color: #ffd700;
+            }
+
+            /* --- LECKE OLDAL SPECIFIKUS STÍLUSOK --- */
+            .lesson-content {
+                max-width: 1000px;
+                margin: 40px auto;
+                padding: 0 40px;
+                color: var(--dark-text);
+                font-family: var(--text-font);
+            }
+            
+            /* Fő cím stílusa */
+            .lesson-content h1 {
+                font-size: 2.8em;
+                font-weight: 800;
+                color: var(--dark-text);
+                margin-top: 0;
+                margin-bottom: 30px;
+                border-bottom: 4px solid var(--teal-bg);
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+
+            .lesson-content h2 {
+                font-size: 2em;
+                font-weight: 800;
+                color: var(--teal-bg);
+                margin-top: 40px;
+                margin-bottom: 15px;
+                border-bottom: 2px solid var(--teal-bg);
+                display: inline-block;
+                padding-bottom: 5px;
+            }
+
+            .lesson-content h3 {
+                font-size: 1.5em;
+                font-weight: 800;
+                color: var(--teal-bg);
+                margin-top: 30px;
+                margin-bottom: 15px;
+            }
+
+            .lesson-content p, .lesson-content li {
+                font-size: 1.2em;
+                font-weight: 400;
+                line-height: 1.7;
+                margin-bottom: 20px;
+            }
+
+            /* Kódblokk stílusa */
+            .code-block-container {
+                background-color: var(--code-bg); 
+                color: var(--code-text);
+                padding: 20px;
+                border-radius: 8px;
+                margin: 30px 0;
+                overflow-x: auto;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+                font-family: 'Consolas', 'Monaco', monospace;
+                font-size: 1.1em;
+                line-height: 1.5;
+            }
+
+            .code-block-container pre {
+                margin: 0;
+                white-space: pre-wrap; 
+            }
+
+            /* Kiemelés a szövegben */
+            .highlight {
+                font-weight: 600;
+                color: var(--teal-bg);
+            }
+            
+            /* Responsive Design */
+            @media (max-width: 1024px) {
+                .header-nav ul {
+                    gap: 30px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .main-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 15px 20px;
+                }
+                .header-title {
+                    padding-left: 0;
+                    margin-top: 10px;
+                }
+                .header-nav {
+                    width: 100%;
+                    margin-top: 15px;
+                }
+                .header-nav ul {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                .lesson-content {
+                    padding: 0 20px;
+                    margin-top: 20px;
+                }
+                .lesson-content h1 {
+                    font-size: 2em;
+                }
+                .lesson-content h2 {
+                    font-size: 1.6em;
+                }
+                .lesson-content p, .lesson-content li {
+                    font-size: 1em;
+                }
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LECKE CÍME</title>
+    </head>
+    <body>
+                <!-- header, szerepeljen mindenhol -->
+        <header class="main-header">
+            <a href="index.html" class="header-logo-link">
+                <div class="header-logo-circle">
+                    <!-- SVG logo, hogy ne legyen hiányzó kép -->
+                    <svg class="logo-image-svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--teal-bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 9l6-6M4 20h8M4 17h8M4 14h8M10 2l4 4 6 6-4 4-6-6-4-4-2-4z"/>
+                        <path d="M16 16l-4 4"/>
+                        <path d="M8 10l-4 4"/>
+                        <polyline points="9 10 7 12 9 14"/>
+                        <path d="M2 12s2 4 10 4 10-4 10-4"/>
+                    </svg>
+                </div>
+            </a>
+            <h1 class="header-title">Így készíts weboldalakat!</h1>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="szerkeszto.html">HTML Szerkesztő</a></li>
+                    <li><a href="oktatoanyagok.html">Oktatóanyagok</a></li>
+                    <li><a href="rolunk.html">Rólunk</a></li>
+                </ul>
+            </nav>
+        </header>
+    </body>
+</html>

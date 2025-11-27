@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;800&display=swap" rel="stylesheet">
+        <style>
+            /* Variables for easy color changes */
+            :root {
+                --teal-bg: #148f95; /* Header background color */
+                --light-cream: #EDEBD7; /* Main content and body background color */
+                --text-color: #ffffff; /* Navigation link color */
+                --dark-text: #333333; /* Main content text color */
+                --button-bg: #148f95; /* Button background color */
+                --button-hover: #107c81; /* Button hover color */
+                --text-font: 'Fustat', sans-serif; /* Fustat font family */
+                --member-title: #148f95; /* Color for the capitalized names (Frissítettem: #333333 helyett #148f95, ahogy az Ön kódjában volt) */
+            }
+
+            /* --- Global Reset --- */
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background-color: var(--light-cream);
+            }
+
+            /* --- Header Container --- */
+            .main-header {
+                display: flex;
+                justify-content: space-between; 
+                align-items: center;
+                width: 100%; 
+                box-sizing: border-box;
+                background-color: var(--teal-bg);
+                padding: 25px 40px; 
+            }
+
+            /* --- Logo Area Styling --- */
+            .header-logo-link {
+                text-decoration: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .header-logo-circle {
+                width: 65px; 
+                height: 65px;
+                border-radius: 50%;
+                background-color: var(--light-cream);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) inset; 
+                overflow: hidden;
+                flex-shrink: 0; 
+            }
+            
+            /* Eredeti LOGO_PNG.png stílusa */
+            .logo-image {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            /* --- Header Title Styling --- */
+            .header-title {
+                color: var(--text-color);
+                font-family: var(--text-font);
+                font-weight: 800; 
+                font-size: 1.5em; 
+                margin: 0; 
+                white-space: nowrap; 
+                padding-left: 40px; 
+                margin-right: auto;
+            }
+
+            /* --- Navigation Buttons Styling --- */
+            .header-nav {
+                flex-shrink: 0;
+            }
+            .header-nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex; 
+                gap: 80px; 
+            }
+
+            .header-nav li a {
+                color: var(--text-color);
+                text-decoration: none;
+                font-size: 1.5em;
+                font-family: var(--text-font); 
+                font-weight: 800; 
+                padding: 10px 0; 
+                transition: color 0.2s;
+            }
+
+            .header-nav li a:hover {
+                color: #ffd700;
+            }
+            
+            /* --- RÓLUNK OLDAL SPECIFIKUS STÍLUSOK --- */
+            .about-container {
+                padding: 80px 100px;
+                max-width: 1400px; /* Max szélesség a tartalomnak */
+                margin: 0 auto; /* Középre igazítás */
+            }
+
+            .member-grid {
+                display: grid;
+                /* Alapértelmezett beállítás: 2 oszlop, 400px minimum szélességgel */
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+                gap: 80px 150px; /* Vertikális és horizontális távolság */
+            }
+
+            .member-block {
+                color: var(--dark-text);
+                font-family: var(--text-font);
+                /* Alapértelmezetten balra igazított szöveg */
+                text-align: left; 
+            }
+            
+            /* ÚJ SZABÁLY a 3. blokk középre igazításához a rácson belül */
+            .member-block.centered {
+                /* Elfoglalja az összes rendelkezésre álló oszlopot (pl. 2 oszlopot) */
+                grid-column: 1 / -1; 
+                /* Korlátozzuk a blokk maximális szélességét, hogy ne terüljön szét túlságosan */
+                max-width: 700px; 
+                /* A blokkot magát középre igazítjuk az about-containeren belül */
+                margin: 0 auto; 
+                /* Fontos: A szöveg marad a member-block alapértelmezett beállításai szerint balra igazított! */
+            }
+
+            .member-title {
+                font-size: 2.2em;
+                font-weight: 800;
+                color: var(--member-title);
+                margin-top: 0;
+                margin-bottom: 5px;
+                text-transform: uppercase; /* Mindig nagybetű */
+                display: inline-block;
+                position: relative;
+            }
+
+            .member-title::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -5px; /* A szöveg alá pozícionálva */
+                width: 100%;
+                height: 3px;
+                background-color: var(--member-title);
+            }
+
+            .member-description {
+                font-size: 1.2em;
+                font-weight: 400;
+                line-height: 1.5;
+                margin-top: 20px;
+                /* A szöveg biztosan balra legyen igazítva, ha a blokk centered */
+                text-align: left; 
+            }
+
+            /* --- Responsive Design (Kisebb képernyőkre) --- */
+            @media (max-width: 1200px) {
+                .about-container {
+                    padding: 60px;
+                }
+            }
+            
+            /* Kisebb képernyőn a 3. blokk is 1 oszlopot foglal el, de továbbra is középre igazítjuk. */
+            @media (max-width: 768px) {
+                .main-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 20px;
+                }
+                .header-title {
+                    padding-left: 0;
+                    margin-top: 15px;
+                }
+                .header-nav {
+                    margin-top: 20px;
+                    width: 100%;
+                }
+                .header-nav ul {
+                    flex-direction: column;
+                    gap: 15px;
+                    align-items: flex-start;
+                }
+                .header-nav li a {
+                    font-size: 1.2em;
+                }
+                .about-container {
+                    padding: 30px;
+                }
+                .member-grid {
+                    /* Egy oszlop mobil nézetben */
+                    grid-template-columns: 1fr; 
+                    gap: 50px;
+                }
+                /* Mobilon a harmadik blokk is teljes szélességben (1 oszlop) jelenik meg, de a max-width megakadályozza a túlzott szétterülést, és a margin: auto középre húzza. */
+                .member-block.centered {
+                    grid-column: auto; /* Visszaáll az automatikus oszlop kiosztásra */
+                    max-width: 100%; /* Engedjük, hogy elfoglalja a szülő szélességét (de a margin auto továbbra is középen tartja) */
+                    margin: 0 auto;
+                }
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rólunk - A Csapat</title>
+    </head>
+
+    <body>
+        <!-- header, szerepeljen mindenhol -->
+        <header class="main-header">
+            <a href="index.html" class="header-logo-link">
+                <div class="header-logo-circle">
+                    <!-- Eredeti kód visszaállítva: -->
+                    <img src="src/img/LOGO_PNG.png" alt="Homepage Logo" class="logo-image">
+                </div>
+            </a>
+            <h1 class="header-title">Így készíts weboldalakat!</h1>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="szerkeszto.html">HTML Szerkesztő</a></li>
+                    <li><a href="oktatoanyagok.html">Oktatóanyagok</a></li>
+                    <li><a href="rolunk.html">Rólunk</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="about-container">
+            <!-- A design ötlet szerinti tartalom elrendezés -->
+            <div class="member-grid">
+                
+                <!-- 1. Csapattag Blokkméret (Oszlopban - Teljes szélességű elhelyezést kivettem a 4. blokk miatt) -->
+                <div class="member-block">
+                    <h2 class="member-title">BARÁTH MILÁN</h2>
+                    <p class="member-description">
+                        A projekt managere. Felelős az oldal kódjáért, szerkesztéséért, elérhetőségéért, megtervezi a weboldal fejlesztéséhez szükséges lépéseket, kiosztja a feladatokat. Az utolsó ellenőrzések nála történnek.
+                    </p>
+                </div>
+
+                <!-- 2. Csapattag Blokkméret (Oszlopban) -->
+                <div class="member-block">
+                    <h2 class="member-title">JANCSÓ MÁTÉ</h2>
+                    <p class="member-description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ab aspernatur minima doloribus animi! Porro officia sunt labore tenetur, placeat at, doloribus, totam deleniti sed corrupti quam ullam dolores aut!
+                    </p>
+                </div>
+
+                <!-- 3. Csapattag Blokkméret (KÖZÉPRE IGAZÍTOTT) -->
+                <div class="member-block centered">
+                    <h2 class="member-title">JUSZTIN ZÉTÉNY</h2>
+                    <p class="member-description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio blanditiis inventore expedita. Libero, odit nostrum natus, obcaecati enim perferendis temporibus officia incidunt excepturi saepe repellat veniam blanditiis voluptates eligendi quisquam!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -7,23 +7,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;800&display=swap" rel="stylesheet">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1. Lecke: Címsorok és Header</title>
+    <title>1. Lecke: Bevezetés a HTML világába</title>
 
     <style>
-        /* Variables for easy color changes (adopted from user's snippet) */
         :root {
-            --teal-bg: #148f95; /* Header background color */
-            --light-cream: #EDEBD7; /* Main content and body background color */
-            --text-color: #ffffff; /* Navigation link color */
-            --dark-text: #333333; /* Main content text color */
-            --button-bg: #148f95; /* Button background color */
-            --button-hover: #107c81; /* Button hover color */
-            --text-font: 'Fustat', sans-serif; /* Fustat font family */
-            --lesson-border: #148f95; /* Accent color for headers/code */
-            --code-bg: #282c34; /* Dark background for code blocks */
+            --teal-bg: #148f95;
+            --light-cream: #EDEBD7;
+            --text-color: #ffffff;
+            --dark-text: #333333;
+            --button-bg: #148f95;
+            --button-hover: #107c81;
+            --text-font: 'Fustat', sans-serif;
+            --lesson-border: #148f95;
+            --code-bg: #282c34;
         }
 
-        /* --- Global Reset and Body Styling --- */
         body {
             margin: 0;
             padding: 0;
@@ -32,28 +30,23 @@
             color: var(--dark-text);
         }
 
-        /* ==================== 1. Header Styling (Based on User's Request) ==================== */
-
         .main-header {
             display: flex;
-            /* Use space-between to push logo+title block to left, nav to right */
             justify-content: space-between; 
             align-items: center;
             width: 100%; 
             box-sizing: border-box;
             background-color: var(--teal-bg);
             padding: 25px 40px; 
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow for better separation */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* --- Logo Area Styling --- */
         .header-logo-link {
             text-decoration: none;
             cursor: pointer;
-            /* New: Added display flex to keep logo and title close if needed */
             display: flex;
             align-items: center;
-            gap: 20px; /* Space between logo and title if title is inside the link */
+            gap: 20px; 
         }
 
         .header-logo-circle {
@@ -66,15 +59,7 @@
             align-items: center;
             box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) inset; 
             overflow: hidden;
-            /* Flex-shrink prevents the logo from shrinking if space is tight */
             flex-shrink: 0; 
-        }
-
-        /* Logó helyettesítő stílusa (Biztonsági okokból hozzáadva) */
-        .logo-fallback {
-            font-size: 35px; 
-            color: var(--teal-bg); 
-            line-height: 1;
         }
 
         .logo-image {
@@ -82,22 +67,19 @@
             max-height: 100%;
         }
 
-        /* --- NEW: Header Title Styling --- */
         .header-title {
             color: var(--text-color);
             font-family: var(--text-font);
-            font-weight: 800; /* Assuming ExtraBold as per the menu */
-            font-size: 1.5em; /* Adjusted font size for prominence */
-            margin: 0; /* Remove default h1 margin */
-            white-space: nowrap; /* Prevents text from wrapping */
-            margin-right: auto; /* Pushes the title as far left as possible (next to logo) */
-            padding-left: 40px; /* Space between logo and title */
+            font-weight: 800;
+            font-size: 1.5em;
+            margin: 0;
+            white-space: nowrap;
+            margin-right: auto;
+            padding-left: 40px;
         }
 
-        /* --- Navigation Buttons Styling --- */
         .header-nav {
-            /* Removed margin-right: auto; as header-title handles spacing */
-            flex-shrink: 0; /* Prevents navigation from shrinking */
+            flex-shrink: 0;
         }
         .header-nav ul {
             list-style: none;
@@ -111,20 +93,30 @@
             color: var(--text-color);
             text-decoration: none;
             font-size: 1.5em;
-            font-family: var(--text-font); 
             font-weight: 800; 
-            padding: 10px 0; 
+            padding: 10px 0;
             transition: color 0.2s;
         }
 
         .header-nav li a:hover {
             color: #ffd700;
         }
-        /* ==================== 2. Lesson Content Styling (Tartalom és kód) ==================== */
+
         .lesson-content {
             max-width: 1000px;
             margin: 50px auto;
             padding: 0 20px;
+        }
+
+        .lesson-content h1 {
+            font-size: 2.8em;
+            font-weight: 800;
+            color: var(--dark-text);
+            margin-top: 0;
+            margin-bottom: 30px;
+            border-bottom: 4px solid var(--lesson-border);
+            display: inline-block;
+            padding-bottom: 10px;
         }
 
         .lesson-content h2 {
@@ -139,17 +131,16 @@
         .lesson-content h3 {
             font-size: 1.6em;
             font-weight: 600;
-            color: var(--dark-text); 
             margin-top: 30px;
         }
 
-        .lesson-content p {
+        .lesson-content p, 
+        .lesson-content li {
             font-size: 1.1em;
             line-height: 1.6;
             margin-bottom: 20px;
         }
-        
-        /* Kódmegjelenítés a szövegen belül */
+
         .lesson-content p code {
             background-color: #e0e0e0;
             padding: 2px 5px;
@@ -158,7 +149,6 @@
             color: var(--dark-text);
         }
 
-        /* Kódblokk stílusa */
         .code-block-container {
             background-color: var(--code-bg);
             color: #ffffff;
@@ -169,12 +159,11 @@
             font-size: 1em;
             margin: 20px 0;
         }
-        
+
         .code-block-container pre code {
-            white-space: pre; 
+            white-space: pre;
         }
 
-        /* Vissza gomb stílusa */
         .nav-link {
             display: inline-block;
             margin-top: 40px;
@@ -195,86 +184,118 @@
 </head>
 
 <body>
-    <!-- header, szerepeljen mindenhol (Az Ön által kért struktúra alapján) -->
+
     <header class="main-header">
-        <a href="index.html" class="header-logo-link">
+        <a href="../index.html" class="header-logo-link">
             <div class="header-logo-circle">
-                <img src="../src\img\LOGO_PNG.png" alt="Homepage Logo" class="logo-image">
+                <img src="../src/img/LOGO_PNG.png" alt="Homepage Logo" class="logo-image">
             </div>
         </a>
         <h1 class="header-title">Így készíts weboldalakat!</h1>
         <nav class="header-nav">
             <ul>
-                <li><a href="szerkeszto.html">HTML Szerkesztő</a></li>
-                <li><a href="oktatoanyagok.html">Oktatóanyagok</a></li>
-                <li><a href="rolunk.html">Rólunk</a></li>
+                <li><a href="../szerkeszto.html">HTML Szerkesztő</a></li>
+                <li><a href="../oktatoanyagok.html">Oktatóanyagok</a></li>
+                <li><a href="../rolunk.html">Rólunk</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="lesson-content">
-        <h1>A HTML Címsorai és a Header Elem</h1>
-        <p>Ebben a leckében megismerkedhetsz a HTML címsorok hierarchiájával és a <code>&lt;header&gt;</code> elem szerepével.</p>
-        
-        <hr>
 
-        <h2>A HTML címsorainak szerepe</h2>
-        <p>A HTML címsorai hat szintig tagolódnak: <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code> és <code>&lt;h6&gt;</code>. Ezek a tagok különböző fontosságú címeket jelölnek.</p>
-        <p>A <code>&lt;h1&gt;</code> általában az oldal vagy dokumentum főcímét takarja, míg a többi szint az alárendelt tartalmak hierarchiáját mutatja.</p>
-        <p>A címsorok helyes használata lehetővé teszi az olvasók számára, hogy gyorsan átlássák a tartalom felépítését, és könnyen megtalálják az őket érdeklő részeket.</p>
-        
-        <hr>
+        <h1>Bevezetés a HTML világába</h1>
+        <p>A HTML az a „nyelv”, aminek segítségével megmondod a böngészőnek, hogy mit szeretnél megjeleníteni: szövegeket, képeket, gombokat, listákat. Ez az első lecke segít megérteni, hogyan épül fel egy alap HTML oldal, és mik azok az elemek, amikre tényleg szükség van.</p>
 
-        <h2>A címsorok helyes alkalmazása</h2>
-        <p>A címhierarchia kialakítása logikai szempontból fontos. A dokumentumnak tartalmaznia kell egy főcímet (<code>&lt;h1&gt;</code>), majd ezt követhetik a főbb fejezetcímek (<code>&lt;h2&gt;</code>), az alfejezetek címei (<code>&lt;h3&gt;</code>) és így tovább.</p>
-        <p>A helyes sorrendet nem szabad önkényesen felborítani. Gyakori hiba például, hogy valaki egy <code>&lt;h4&gt;</code> elemet használ pusztán azért, mert vizuálisan kisebb címet szeretne.</p>
-        <p>A HTML elemek jelentését soha ne keverjük össze a megjelenéssel.</p>
+        <h2>Hogyan épül fel nagyvonalakban egy HTML oldal?</h2>
+        <p>Ha belenéznél egy HTML fájlba, három nagy részt látnál:</p>
 
-        <hr>
+        <ul>
+            <li><code>&lt;html&gt;</code> — a teljes oldal „kerete”</li>
+            <li><code>&lt;head&gt;</code> — technikai adatok és beállítások</li>
+            <li><code>&lt;body&gt;</code> — a felhasználó által látott tartalom</li>
+        </ul>
 
-        <h2>Példa egy helyes címsorhierarchiára</h2>
-        <p>Az alábbi egyszerű példa bemutatja, hogyan érdemes felépíteni a dokumentum címeit:</p>
+        <p>Nincs benne semmi varázslat — logikus, szinte dokumentumszerű felépítés.</p>
+
+        <h2>Az alap HTML szerkezet</h2>
+        <p>Egy minimális, abszolút működő HTML oldal így néz ki:</p>
 
         <div class="code-block-container">
-            <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="hu"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;Címsor példa&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Főcím&lt;/h1&gt;
-    &lt;h2&gt;Fejezet címe&lt;/h2&gt;
-    &lt;h3&gt;Alfejezet címe&lt;/h3&gt;
-    &lt;h2&gt;Következő fejezet&lt;/h2&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;Első HTML oldalam&lt;/title&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h1&gt;Helló, web!&lt;/h1&gt;
+        &lt;p&gt;Ez az első HTML oldalam tartalma.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
         </div>
 
-        <p>Ez a struktúra lehetővé teszi az olvasók és a keresőmotorok számára, hogy egyértelműen azonosítsák a tartalom szerkezetét.</p>
-        
-        <hr>
+        <h2>A legfontosabb elemek röviden</h2>
 
-        <h2>A header elem feladata és jelentése</h2>
-        <p>A HTML <code>&lt;header&gt;</code> elem a dokumentum vagy egy tartalmi egység bevezető részét tartalmazza.</p>
-        <p>Ez lehet az egész oldalra jellemző fejléc (például egy logóval és navigációs menüvel), de egy cikk vagy szekció saját <code>&lt;header&gt;</code> eleme is. A <code>&lt;header&gt;</code> elem célja, hogy összefoglaló jelleggel tartalmazza az adott rész legfontosabb információit – mint például a címet, dátumot, szerzőt vagy bevezető szöveget.</p>
-        
-        <hr>
+        <h3><code>&lt;!DOCTYPE html&gt;</code></h3>
+        <p>Ezzel jelzed a böngészőnek: modern HTML-t fog kapni.</p>
 
-        <h2>A header elem helyes használata</h2>
-        <p>Fontos megkülönböztetni a <code>&lt;header&gt;</code> elemet a <code>&lt;head&gt;</code> elemtől. A <code>&lt;head&gt;</code> technikai információkat tartalmaz (például metaadatokat, stíluslapokra és parancsfájlokra mutató hivatkozásokat), míg a <code>&lt;header&gt;</code> elem vizuálisan is megjelenik a weboldalon, és a felhasználók számára fontos tartalmakat közvetít.</p>
-        <p>Egy <code>&lt;header&gt;</code> elem gyakran tartalmaz címeket, de nem kötelező. Lehet benne navigáció, keresősáv, rövid bevezető szöveg vagy akár képek is.</p>
-        <p>A lényeg, hogy a <code>&lt;header&gt;</code> elem az adott tartalom kontextusát adja meg.</p>
-        
-        <hr>
+        <h3><code>&lt;html&gt;</code></h3>
+        <p>A teljes dokumentum gyökere. Minden ebben a tagben él.</p>
 
-        <h2>Összefoglalás</h2>
-        <p>A HTML címsorai és a <code>&lt;header&gt;</code> elem együtt biztosítják a weboldalak áttekinthetőségét, logikus szerkezetét, használhatóságát és keresőbarát kialakítását.</p>
-        <p>Ezek helyes alkalmazása minden webfejlesztő alapvető feladata. A címsorok segítenek a tartalom strukturálásában és a felhasználók navigációjában, míg a <code>&lt;header&gt;</code> elem a dokumentum vagy szakasz kontextusát adja meg.</p>
-        <p>A megfelelő hierarchia és logikai felépítés nem csupán esztétikai, hanem funkcionális szempontból is kulcsfontosságú.</p>
+        <h3><code>&lt;head&gt;</code></h3>
+        <p>Itt vannak a háttérben futó, „nem látható” dolgok: oldal címe, metaadatok, stílusok, script fájlok.</p>
 
-        <a href="oktatoanyagok.html" class="nav-link">Vissza az Oktatóanyagokhoz</a>
+        <h3><code>&lt;body&gt;</code></h3>
+        <p>A weboldal tényleges tartalma: szövegek, gombok, képek, listák.</p>
+
+        <h2>Alap tagek a tartalomhoz</h2>
+
+        <h3>Címsorok: <code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code></h3>
+        <p>Hat különböző fontossági szint létezik. A <code>&lt;h1&gt;</code> a legerősebb, a <code>&lt;h6&gt;</code> a leggyengébb.</p>
+
+        <div class="code-block-container">
+<pre><code>&lt;h1&gt;Főcím&lt;/h1&gt;
+&lt;h2&gt;Alcím&lt;/h2&gt;
+&lt;h3&gt;Melléktéma&lt;/h3&gt;
+</code></pre>
+        </div>
+
+        <h3><code>&lt;p&gt;</code> — Bekezdés</h3>
+        <p>Egyszerű szövegrész:</p>
+
+        <div class="code-block-container">
+<pre><code>&lt;p&gt;Ez itt egy bekezdés.&lt;/p&gt;
+</code></pre>
+        </div>
+
+        <h3><code>&lt;br&gt;</code> — Sortörés</h3>
+
+        <h3><code>&lt;strong&gt;</code> — Erős kiemelés</h3>
+        <p>Például:</p>
+
+        <div class="code-block-container">
+<pre><code>&lt;p&gt;Ez egy &lt;strong&gt;nagyon fontos&lt;/strong&gt; gondolat.&lt;/p&gt;
+</code></pre>
+        </div>
+
+        <h2>Hogyan gondolkodj a HTML-ről?</h2>
+        <p>A HTML nem programozás. Sokkal inkább olyan, mintha egy dokumentumot osztanál részekre:</p>
+
+        <ul>
+            <li>címsorok</li>
+            <li>bekezdések</li>
+            <li>szakaszok</li>
+            <li>képek</li>
+            <li>listák</li>
+        </ul>
+
+        <p>A böngészőnek csak jelzed, hogy mi micsoda. Hogy hogyan néz ki? Azt majd a CSS intézi később.</p>
+
+        <a href="../oktatoanyagok.html" class="nav-link">Vissza az Oktatóanyagokhoz</a>
 
     </main>
+
 </body>
 </html>
