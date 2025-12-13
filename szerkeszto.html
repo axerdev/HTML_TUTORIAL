@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;800&display=swap" rel="stylesheet">
+        <style>
+            /* Variables for easy color changes */
+            :root {
+                --teal-bg: #148f95; /* Header background color */
+                --light-cream: #EDEBD7; /* Main content and body background color */
+                --text-color: #ffffff; /* Navigation link color */
+                --dark-text: #333333; /* Main content text color */
+                --button-bg: #148f95; /* Button background color */
+                --button-hover: #107c81; /* Button hover color */
+                --text-font: 'Fustat', sans-serif; /* Fustat font family */
+                /* Új változók a szerkesztőhöz */
+                --editor-bg: #2d2d2d; /* Sötét háttér a kódnak */
+                --editor-text: #cccccc; /* Világos szöveg a kódnak */
+                --editor-border: #444444; /* Sötét szegély */
+            }
+
+            /* --- Global Reset --- */
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: var(--text-font); /* Inter helyett Fustat, ahogy az eredetiben is van */
+                background-color: var(--light-cream);
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            /* --- Header Container (Adjusted for 3 items) --- */
+            .main-header {
+                display: flex;
+                justify-content: space-between; 
+                align-items: center;
+                width: 100%; 
+                box-sizing: border-box;
+                background-color: var(--teal-bg);
+                padding: 25px 40px; 
+            }
+
+            /* --- Logo Area Styling --- */
+            .header-logo-link {
+                text-decoration: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 20px; 
+            }
+
+            .header-logo-circle {
+                width: 65px; 
+                height: 65px;
+                border-radius: 50%;
+                background-color: var(--light-cream);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) inset; 
+                overflow: hidden;
+                flex-shrink: 0; 
+            }
+
+            .logo-image {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            /* --- Header Title Styling --- */
+            .header-title {
+                color: var(--text-color);
+                font-family: var(--text-font);
+                font-weight: 800; 
+                font-size: 1.5em; 
+                margin: 0; 
+                white-space: nowrap; 
+                margin-right: auto; 
+                padding-left: 40px; 
+            }
+
+            /* --- Navigation Buttons Styling --- */
+            .header-nav {
+                flex-shrink: 0; 
+            }
+            .header-nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex; 
+                gap: 80px; 
+            }
+
+            .header-nav li a {
+                color: var(--text-color);
+                text-decoration: none;
+                font-size: 1.5em;
+                font-family: var(--text-font); 
+                font-weight: 800; 
+                padding: 10px 0; 
+                transition: color 0.2s;
+            }
+
+            .header-nav li a:hover {
+                color: #ffd700;
+            }
+
+            /* --- SZERKESZTŐ SPECIFIKUS STÍLUSOK --- */
+            .editor-container {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1; /* Hogy kitöltse a rendelkezésre álló magasságot */
+                padding: 30px;
+                gap: 20px;
+                max-width: 1600px;
+                margin: 0 auto;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .code-panel {
+                display: flex;
+                gap: 20px;
+                min-height: 350px; /* Szerkesztő minimális magassága */
+                flex-wrap: wrap; /* Kisebb képernyőn egymás alá kerülnek */
+            }
+
+            .editor-box {
+                flex: 1 1 45%; /* Flexibilis méret: 45% alap, növekedhet/csökkenhet */
+                display: flex;
+                flex-direction: column;
+                background-color: var(--editor-bg);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .editor-header {
+                background-color: var(--editor-border);
+                color: var(--text-color);
+                font-family: var(--text-font);
+                font-weight: 600;
+                padding: 10px 15px;
+                font-size: 1.1em;
+                border-bottom: 1px solid #666;
+            }
+
+            .code-editor {
+                width: 100%;
+                flex-grow: 1;
+                padding: 15px;
+                box-sizing: border-box;
+                border: none;
+                outline: none;
+                resize: none;
+                font-family: 'Consolas', 'Monaco', monospace;
+                font-size: 1em;
+                line-height: 1.5;
+                background-color: var(--editor-bg);
+                color: var(--editor-text);
+            }
+
+            /* Megjelenítő terület (IFrame) */
+            .result-panel {
+                flex-grow: 1;
+                min-height: 500px; /* Eredmény panel minimális magassága */
+                background-color: #ffffff;
+                border: 2px solid var(--teal-bg);
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+            }
+
+            .result-panel iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                background-color: #ffffff; /* Fehér háttér, ha a felhasználó nem ad meg semmit */
+            }
+
+            /* --- Responsive Design --- */
+            @media (max-width: 1024px) {
+                .editor-container {
+                    padding: 20px;
+                }
+                .code-panel {
+                    flex-direction: column; /* Szerkesztők egymás alá kerülnek */
+                }
+                .editor-box {
+                    flex-basis: auto; /* Alap szélesség feloldva */
+                }
+            }
+            
+            @media (max-width: 768px) {
+                /* Header responsive stílusokat megőrizzük, de nem módosítjuk, csak az editor stílusait adjuk hozzá */
+                .main-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 20px;
+                }
+                .header-title {
+                    padding-left: 0;
+                    margin-top: 15px;
+                }
+                .header-nav {
+                    margin-top: 20px;
+                    width: 100%;
+                }
+                .header-nav ul {
+                    flex-direction: column;
+                    gap: 15px;
+                    align-items: flex-start;
+                }
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML Szerkesztő</title>
+    </head>
+
+    <body>
+        <!-- header, szerepeljen mindenhol -->
+        <header class="main-header">
+            <a href="index.html" class="header-logo-link">
+                <div class="header-logo-circle">
+                    <!-- Placeholder kép a logóhoz -->
+                    <img src="src\img\LOGO_PNG.png" alt="Homepage Logo" class="logo-image">
+                </div>
+            </a>
+            <h1 class="header-title">Így készíts weboldalakat!</h1>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="szerkeszto.html">HTML Szerkesztő</a></li>
+                    <li><a href="oktatoanyagok.html">Oktatóanyagok</a></li>
+                    <li><a href="rolunk.html">Rólunk</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="editor-container">
+            <div class="code-panel">
+                <!-- HTML Szerkesztő -->
+                <div class="editor-box">
+                    <div class="editor-header">HTML</div>
+                    <textarea id="html-code" class="code-editor" placeholder="Írja be a HTML kódját ide..."></textarea>
+                </div>
+
+                <!-- CSS Szerkesztő -->
+                <div class="editor-box">
+                    <div class="editor-header">CSS</div>
+                    <textarea id="css-code" class="code-editor" placeholder="Írja be a CSS kódját ide..."></textarea>
+                </div>
+            </div>
+
+            <!-- Eredmény Megjelenítő -->
+            <div class="result-panel">
+                <iframe id="output-frame" title="Kód Előnézet"></iframe>
+            </div>
+        </main>
+        
+        <script>
+            // Alapértelmezett kódok a szerkesztőkhöz
+            const defaultHtml = `<h1>Hello Világ!</h1>
+<p>Ez az első weboldalam.</p>
+`;
+
+            const defaultCss = `body {
+  background-color: #f1f1f1;
+}
+h1 {
+  color: #148f95;
+}`;
+            
+            const htmlEditor = document.getElementById('html-code');
+            const cssEditor = document.getElementById('css-code');
+            const outputFrame = document.getElementById('output-frame');
+
+            // Kezdő értékek beállítása
+            htmlEditor.value = defaultHtml;
+            cssEditor.value = defaultCss;
+
+
+            /**
+             * Frissíti az iframe tartalmát a jelenlegi HTML és CSS kód alapján.
+             */
+            function updateOutput() {
+                const htmlCode = htmlEditor.value;
+                const cssCode = cssEditor.value;
+
+                // Elkészítjük az iframe teljes HTML tartalmát
+                const content = `
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Előnézet</title>
+    <style>
+        /* Alapértelmezett reset az iframe-hez */
+        body { margin: 0; padding: 0; }
+        ${cssCode}
+    </style>
+</head>
+<body>
+    ${htmlCode}
+</body>
+</html>
+                `;
+
+                // Az iframe tartalmának frissítése
+                outputFrame.contentDocument.open();
+                outputFrame.contentDocument.write(content);
+                outputFrame.contentDocument.close();
+            }
+
+            // Eseményfigyelők beállítása
+            // Minden gépelés után frissítjük az előnézetet
+            htmlEditor.addEventListener('input', updateOutput);
+            cssEditor.addEventListener('input', updateOutput);
+
+            // Első indításkor frissítjük az előnézetet
+            window.onload = updateOutput;
+
+        </script>
+    </body>
+</html>
