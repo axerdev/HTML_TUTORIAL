@@ -19,4 +19,4 @@ HTML and CSS tutorial website for a school project
 - Main page
 ![App Screenshot](https://i.imgur.com/pPGu7hr.png)
 - Lessons page
-![App Screenshot](https://i.imgur.com/pPGu7hr.png)
+![App Screenshot](https://i.imgur.com/TVyqhrR.png)
