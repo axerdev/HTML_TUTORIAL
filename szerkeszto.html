@@ -216,6 +216,36 @@
                     align-items: flex-start;
                 }
             }
+            /* ========== RESPONSIVE (additions only) ========== */
+            html, body { overflow-x: hidden; max-width: 100vw; box-sizing: border-box; }
+            *, *::before, *::after { box-sizing: inherit; }
+            img, video, iframe { max-width: 100%; height: auto; }
+            @media (max-width: 1200px) {
+                .main-header { padding: 25px 30px; }
+                .header-nav ul { gap: 50px; }
+                .editor-container { padding: 24px; }
+            }
+            @media (max-width: 992px) {
+                .main-header { padding: 20px 24px; }
+                .header-title { padding-left: 24px; font-size: 1.35em; }
+                .header-nav ul { gap: 36px; }
+                .header-nav li a { font-size: 1.35em; }
+                .editor-container { padding: 20px; }
+                .code-panel { gap: 16px; }
+                .editor-box { flex: 1 1 100%; max-width: 100%; }
+                .result-panel { min-height: 400px; }
+            }
+            @media (max-width: 480px) {
+                .main-header { padding: 16px 16px; }
+                .header-logo-circle { width: 52px; height: 52px; }
+                .header-title { font-size: 1.15em; }
+                .header-nav ul { gap: 10px 16px; }
+                .header-nav li a { font-size: 1.15em; }
+                .editor-container { padding: 16px; gap: 16px; }
+                .code-panel { min-height: 280px; }
+                .result-panel { min-height: 320px; }
+                .editor-header, .code-editor { padding: 10px 12px; font-size: 0.95em; }
+            }
         </style>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>HTML Szerkesztő</title>
